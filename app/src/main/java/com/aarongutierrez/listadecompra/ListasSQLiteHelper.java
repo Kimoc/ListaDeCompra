@@ -13,14 +13,14 @@ public class ListasSQLiteHelper extends SQLiteOpenHelper {
 
     String aux;
 
-    String sqlCreate = "CREATE TABLE Listas (idLista INTEGER PRIMARY KEY, nomLista VARCHAR NOT NULL, timestamp VARCHAR  )"; //YYYY-MM-DDTHH:MM:SS
+    String sqlCreate = "CREATE TABLE Listas ( nomLista VARCHAR PRIMARY KEY NOT NULL, timestamp VARCHAR  )"; //YYYY-MM-DD HH:MM:SS
 
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "Listas.db";
 
 
-    public ListasSQLiteHelper(Context context) {
+    public ListasSQLiteHelper(Context context ) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
     }
@@ -28,17 +28,18 @@ public class ListasSQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        //CREATES TEST LIST------------
+        //CREATES  LIST------------
         db.execSQL(sqlCreate);
 
         //INSERT TEST TIMEPSTAMP-------------
-        db.execSQL("INSERT INTO Listas(idLista ,nomLista,timestamp) VALUES (1,'ListaTest1',datetime())");
+        db.execSQL("INSERT INTO Listas(nomLista,timestamp) VALUES ('ListaTest',datetime())");
 
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
 
 
 

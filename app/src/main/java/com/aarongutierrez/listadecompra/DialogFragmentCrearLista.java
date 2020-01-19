@@ -3,6 +3,7 @@ package com.aarongutierrez.listadecompra;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -17,8 +18,7 @@ public class DialogFragmentCrearLista extends AppCompatDialogFragment {
 
 
     private EditText  inpuntCrearLista;
-    private DialogFragmentCrearLista listener;
-
+    private DialogFragmentCrearListaListener listaListener;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -30,13 +30,18 @@ public class DialogFragmentCrearLista extends AppCompatDialogFragment {
                 .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String inputUsuario =inpuntCrearLista.getText().toString();
+
+
+
 
                     }
                 })
                 .setPositiveButton("GUARDAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        String inputUsuario =inpuntCrearLista.getText().toString();
+                        listaListener.apllyText(inputUsuario);
+
 
                     }
                 });
@@ -49,6 +54,16 @@ public class DialogFragmentCrearLista extends AppCompatDialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        try{
+            listaListener= (DialogFragmentCrearListaListener)context;
+        }catch (ClassCastException e){
+            throw new ClassCastException(context.toString()+"Mustimplement DialogFramentListener");
+        }
+
+    }
+    //To send info to mainactivity
+    public interface DialogFragmentCrearListaListener{
+        void apllyText(String inputUser);
     }
 
 }
