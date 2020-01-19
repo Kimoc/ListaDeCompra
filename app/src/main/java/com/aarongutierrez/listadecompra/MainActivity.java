@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Ací aniran les sentències d'actualització de la base de dades
             // Tanquem la base de dades
+
             db.close();
         }
 
