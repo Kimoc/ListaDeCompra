@@ -3,6 +3,7 @@ package com.aarongutierrez.listadecompra;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -16,6 +17,7 @@ public class DialogFragmentCrearLista extends AppCompatDialogFragment {
 
 
     private EditText  inpuntCrearLista;
+    private DialogFragmentCrearLista listener;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class DialogFragmentCrearLista extends AppCompatDialogFragment {
                 .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        String inputUsuario =inpuntCrearLista.getText().toString();
 
                     }
                 })
@@ -42,4 +45,10 @@ public class DialogFragmentCrearLista extends AppCompatDialogFragment {
         return builder.create();
 
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
 }

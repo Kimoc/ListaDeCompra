@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btNuevaLista= (FloatingActionButton) findViewById(R.id.bt_nueva_lista);
+        btNuevaLista= findViewById(R.id.bt_nueva_lista);
 
         //DATABASE
-        ListasSQLiteHelper lsqlh = new ListasSQLiteHelper(this,db_name,null,DB_VERSION);
+        ListasSQLiteHelper lsqlh = new ListasSQLiteHelper(this);
         SQLiteDatabase db = lsqlh.getWritableDatabase();
         if(db == null) {
             Toast.makeText(this, "Connection error to DB", Toast.LENGTH_SHORT).show();
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Connected to DB", Toast.LENGTH_SHORT).show();
 
             // Ací aniran les sentències d'actualització de la base de dades
-            // Tanquem la base de dades
+
 
             db.close();
         }
@@ -56,5 +56,15 @@ public class MainActivity extends AppCompatActivity {
         DialogFragmentCrearLista crearListaAlertDialog = new DialogFragmentCrearLista();
 
         crearListaAlertDialog.show(getSupportFragmentManager(),"alert dialog");
+
     }
+
+
+
+    public void registrarLista(String nombreLitsa){
+
+        ListasSQLiteHelper listasSQLiteHelper= new ListasSQLiteHelper(getContext());
+    }
+
+
 }
