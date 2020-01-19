@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ListaDeCompra</string>
+    <string name="text_input_crear_lista" />
+    <string name="hit_input_crear_lista">Inserta el nombre para la lista</string>
+    <string name="elegir_lista">Elegir lista</string>
+    <string name="crea_nueva_lista">Crea una lista Nueva</string>
+</resources>
