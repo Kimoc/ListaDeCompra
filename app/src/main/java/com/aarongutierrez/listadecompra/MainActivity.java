@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity implements DialogFragmentCrearLista.DialogFragmentCrearListaListener {
@@ -70,10 +73,10 @@ public class MainActivity extends AppCompatActivity implements DialogFragmentCre
         } else {
 
 
-            //Creem les parelles clau-valor
+            //Genera nuevo registro (nueva lista) con clave-valor *nomlista-*mas el input del AlerDialog;
             ContentValues nuevoRegistro = new ContentValues();
             nuevoRegistro.put("nomLista", inputUser);
-
+            nuevoRegistro.put("timeStamp",getCurrentTimeStamp());
             // Inserim el registre a la base de dades
             db.insert("Listas", null, nuevoRegistro);
 
@@ -83,5 +86,21 @@ public class MainActivity extends AppCompatActivity implements DialogFragmentCre
         }
     }
 
+    /**
+     *
+     * @return yyyy-MM-dd HH:mm:ss formate date as string
+     */
+    public static String getCurrentTimeStamp(){
+        try {
 
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentDateTime = dateFormat.format(new Date()); // Find todays date
+
+            return currentDateTime;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
+    }
 }
