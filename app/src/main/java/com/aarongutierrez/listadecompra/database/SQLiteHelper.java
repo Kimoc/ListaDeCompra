@@ -8,14 +8,21 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.aarongutierrez.listadecompra.model.Lista;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class SQLiteHelper extends SQLiteOpenHelper {
 
     //***______________________________SQLITE COMMANDS___________________________________***//
 
-    String sqlCreate = "CREATE TABLE Listas ( nomLista VARCHAR PRIMARY KEY NOT NULL, timestamp TIMESTAMP DEFAULT   CURRENT_TIMESTAMP  )";
+    //TABLES
+
+    String sqlCreateTableListas = "CREATE TABLE Listas ( nomLista STRING PRIMARY KEY NOT NULL, timestamp TIMESTAMP DEFAULT   CURRENT_TIMESTAMP  )";//Tabla listas
+    String sqlCreateTableCategorias = "CREATE TABLE Categorias ( nomCateg STRING PRIMARY KEY NOT NULL ,imagen INTEGER  )";//Tabla Categorias
+    String sqlCreateTableProductos="CREATE TABLE Productos ( nomProd STRING PRIMARY KEY NOT NULL ,imagen INTEGER , categoria STRING REFERENCES nomCateg (Categorias))";
+    String sqlCreateTableListaProductos="CREATE TABLE ListaProductos( nomLista STRING PRIMARY KEY REFERENCES nomLista(Listas) ON DELETE CASCADE ," +
+                                        "productos STRING REFERENCES nomProd(Productos))";
+
+
 
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
@@ -42,7 +49,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         boolean datoscargados;
         //CREATES  LIST------------
-        db.execSQL(sqlCreate);
+        db.execSQL(sqlCreateTableListas);
+        db.execSQL(sqlCreateTableCategorias);
+        db.execSQL(sqlCreateTableProductos);
+        db.execSQL(sqlCreateTableListaProductos);
 
         //INSERT TEST TIMEPSTAMP-------------
         db.execSQL("INSERT INTO Listas(nomLista,timestamp) VALUES ('ListaTest',datetime())");
