@@ -1,9 +1,8 @@
-package com.aarongutierrez.listadecompra;
+package com.aarongutierrez.listadecompra.fragments;
 
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -14,10 +13,12 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.aarongutierrez.listadecompra.R;
+
 public class DialogFragmentCrearLista extends AppCompatDialogFragment {
 
 
-    private EditText  inpuntCrearLista;
+    private EditText  inpuntCrearLista; //Input del usuario
     private DialogFragmentCrearListaListener listaListener;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class DialogFragmentCrearLista extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-
+                    //does nothing and returns to mainactivity
 
 
                     }
